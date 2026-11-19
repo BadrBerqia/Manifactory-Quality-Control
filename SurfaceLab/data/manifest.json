@@ -1,0 +1,344 @@
+{
+  "train": [
+    "train/good/000.jpg",
+    "train/good/006.jpg",
+    "train/good/020.jpg",
+    "train/good/027.jpg",
+    "train/good/041.jpg",
+    "train/good/048.jpg",
+    "train/good/062.jpg",
+    "train/good/069.jpg",
+    "train/good/083.jpg",
+    "train/good/090.jpg",
+    "train/good/104.jpg",
+    "train/good/111.jpg",
+    "train/good/125.jpg",
+    "train/good/132.jpg",
+    "train/good/146.jpg",
+    "train/good/153.jpg",
+    "train/good/167.jpg",
+    "train/good/174.jpg",
+    "train/good/188.jpg",
+    "train/good/195.jpg",
+    "train/good/209.jpg",
+    "train/good/216.jpg",
+    "train/good/230.jpg",
+    "train/good/237.jpg"
+  ],
+  "calibration": [
+    "train/good/013.jpg",
+    "train/good/034.jpg",
+    "train/good/055.jpg",
+    "train/good/076.jpg",
+    "train/good/097.jpg",
+    "train/good/118.jpg",
+    "train/good/139.jpg",
+    "train/good/160.jpg",
+    "train/good/181.jpg",
+    "train/good/202.jpg",
+    "train/good/223.jpg",
+    "train/good/244.jpg"
+  ],
+  "test": [
+    {
+      "id": "good-000",
+      "kind": "good",
+      "image": "test/good/000.jpg"
+    },
+    {
+      "id": "good-002",
+      "kind": "good",
+      "image": "test/good/002.jpg"
+    },
+    {
+      "id": "good-005",
+      "kind": "good",
+      "image": "test/good/005.jpg"
+    },
+    {
+      "id": "good-008",
+      "kind": "good",
+      "image": "test/good/008.jpg"
+    },
+    {
+      "id": "good-011",
+      "kind": "good",
+      "image": "test/good/011.jpg"
+    },
+    {
+      "id": "good-014",
+      "kind": "good",
+      "image": "test/good/014.jpg"
+    },
+    {
+      "id": "good-016",
+      "kind": "good",
+      "image": "test/good/016.jpg"
+    },
+    {
+      "id": "good-019",
+      "kind": "good",
+      "image": "test/good/019.jpg"
+    },
+    {
+      "id": "good-022",
+      "kind": "good",
+      "image": "test/good/022.jpg"
+    },
+    {
+      "id": "good-025",
+      "kind": "good",
+      "image": "test/good/025.jpg"
+    },
+    {
+      "id": "good-028",
+      "kind": "good",
+      "image": "test/good/028.jpg"
+    },
+    {
+      "id": "good-031",
+      "kind": "good",
+      "image": "test/good/031.jpg"
+    },
+    {
+      "id": "color-000",
+      "kind": "color",
+      "image": "test/color/000.jpg",
+      "mask": "ground_truth/color/000_mask.png"
+    },
+    {
+      "id": "color-002",
+      "kind": "color",
+      "image": "test/color/002.jpg",
+      "mask": "ground_truth/color/002_mask.png"
+    },
+    {
+      "id": "color-005",
+      "kind": "color",
+      "image": "test/color/005.jpg",
+      "mask": "ground_truth/color/005_mask.png"
+    },
+    {
+      "id": "color-007",
+      "kind": "color",
+      "image": "test/color/007.jpg",
+      "mask": "ground_truth/color/007_mask.png"
+    },
+    {
+      "id": "color-010",
+      "kind": "color",
+      "image": "test/color/010.jpg",
+      "mask": "ground_truth/color/010_mask.png"
+    },
+    {
+      "id": "color-012",
+      "kind": "color",
+      "image": "test/color/012.jpg",
+      "mask": "ground_truth/color/012_mask.png"
+    },
+    {
+      "id": "color-015",
+      "kind": "color",
+      "image": "test/color/015.jpg",
+      "mask": "ground_truth/color/015_mask.png"
+    },
+    {
+      "id": "color-018",
+      "kind": "color",
+      "image": "test/color/018.jpg",
+      "mask": "ground_truth/color/018_mask.png"
+    },
+    {
+      "id": "cut-000",
+      "kind": "cut",
+      "image": "test/cut/000.jpg",
+      "mask": "ground_truth/cut/000_mask.png"
+    },
+    {
+      "id": "cut-002",
+      "kind": "cut",
+      "image": "test/cut/002.jpg",
+      "mask": "ground_truth/cut/002_mask.png"
+    },
+    {
+      "id": "cut-005",
+      "kind": "cut",
+      "image": "test/cut/005.jpg",
+      "mask": "ground_truth/cut/005_mask.png"
+    },
+    {
+      "id": "cut-007",
+      "kind": "cut",
+      "image": "test/cut/007.jpg",
+      "mask": "ground_truth/cut/007_mask.png"
+    },
+    {
+      "id": "cut-010",
+      "kind": "cut",
+      "image": "test/cut/010.jpg",
+      "mask": "ground_truth/cut/010_mask.png"
+    },
+    {
+      "id": "cut-012",
+      "kind": "cut",
+      "image": "test/cut/012.jpg",
+      "mask": "ground_truth/cut/012_mask.png"
+    },
+    {
+      "id": "cut-015",
+      "kind": "cut",
+      "image": "test/cut/015.jpg",
+      "mask": "ground_truth/cut/015_mask.png"
+    },
+    {
+      "id": "cut-018",
+      "kind": "cut",
+      "image": "test/cut/018.jpg",
+      "mask": "ground_truth/cut/018_mask.png"
+    },
+    {
+      "id": "fold-000",
+      "kind": "fold",
+      "image": "test/fold/000.jpg",
+      "mask": "ground_truth/fold/000_mask.png"
+    },
+    {
+      "id": "fold-002",
+      "kind": "fold",
+      "image": "test/fold/002.jpg",
+      "mask": "ground_truth/fold/002_mask.png"
+    },
+    {
+      "id": "fold-004",
+      "kind": "fold",
+      "image": "test/fold/004.jpg",
+      "mask": "ground_truth/fold/004_mask.png"
+    },
+    {
+      "id": "fold-006",
+      "kind": "fold",
+      "image": "test/fold/006.jpg",
+      "mask": "ground_truth/fold/006_mask.png"
+    },
+    {
+      "id": "fold-009",
+      "kind": "fold",
+      "image": "test/fold/009.jpg",
+      "mask": "ground_truth/fold/009_mask.png"
+    },
+    {
+      "id": "fold-011",
+      "kind": "fold",
+      "image": "test/fold/011.jpg",
+      "mask": "ground_truth/fold/011_mask.png"
+    },
+    {
+      "id": "fold-013",
+      "kind": "fold",
+      "image": "test/fold/013.jpg",
+      "mask": "ground_truth/fold/013_mask.png"
+    },
+    {
+      "id": "fold-016",
+      "kind": "fold",
+      "image": "test/fold/016.jpg",
+      "mask": "ground_truth/fold/016_mask.png"
+    },
+    {
+      "id": "glue-000",
+      "kind": "glue",
+      "image": "test/glue/000.jpg",
+      "mask": "ground_truth/glue/000_mask.png"
+    },
+    {
+      "id": "glue-002",
+      "kind": "glue",
+      "image": "test/glue/002.jpg",
+      "mask": "ground_truth/glue/002_mask.png"
+    },
+    {
+      "id": "glue-005",
+      "kind": "glue",
+      "image": "test/glue/005.jpg",
+      "mask": "ground_truth/glue/005_mask.png"
+    },
+    {
+      "id": "glue-007",
+      "kind": "glue",
+      "image": "test/glue/007.jpg",
+      "mask": "ground_truth/glue/007_mask.png"
+    },
+    {
+      "id": "glue-010",
+      "kind": "glue",
+      "image": "test/glue/010.jpg",
+      "mask": "ground_truth/glue/010_mask.png"
+    },
+    {
+      "id": "glue-012",
+      "kind": "glue",
+      "image": "test/glue/012.jpg",
+      "mask": "ground_truth/glue/012_mask.png"
+    },
+    {
+      "id": "glue-015",
+      "kind": "glue",
+      "image": "test/glue/015.jpg",
+      "mask": "ground_truth/glue/015_mask.png"
+    },
+    {
+      "id": "glue-018",
+      "kind": "glue",
+      "image": "test/glue/018.jpg",
+      "mask": "ground_truth/glue/018_mask.png"
+    },
+    {
+      "id": "poke-000",
+      "kind": "poke",
+      "image": "test/poke/000.jpg",
+      "mask": "ground_truth/poke/000_mask.png"
+    },
+    {
+      "id": "poke-002",
+      "kind": "poke",
+      "image": "test/poke/002.jpg",
+      "mask": "ground_truth/poke/002_mask.png"
+    },
+    {
+      "id": "poke-004",
+      "kind": "poke",
+      "image": "test/poke/004.jpg",
+      "mask": "ground_truth/poke/004_mask.png"
+    },
+    {
+      "id": "poke-007",
+      "kind": "poke",
+      "image": "test/poke/007.jpg",
+      "mask": "ground_truth/poke/007_mask.png"
+    },
+    {
+      "id": "poke-009",
+      "kind": "poke",
+      "image": "test/poke/009.jpg",
+      "mask": "ground_truth/poke/009_mask.png"
+    },
+    {
+      "id": "poke-012",
+      "kind": "poke",
+      "image": "test/poke/012.jpg",
+      "mask": "ground_truth/poke/012_mask.png"
+    },
+    {
+      "id": "poke-014",
+      "kind": "poke",
+      "image": "test/poke/014.jpg",
+      "mask": "ground_truth/poke/014_mask.png"
+    },
+    {
+      "id": "poke-017",
+      "kind": "poke",
+      "image": "test/poke/017.jpg",
+      "mask": "ground_truth/poke/017_mask.png"
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101c2a">
+  <title>SurfaceLab · Contrôle qualité visuel</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script defer src="/assets/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="top-inner">
+      <div class="brand"><span class="mark" aria-hidden="true"><i></i></span>SurfaceLab</div>
+      <nav aria-label="Navigation principale">
+        <button type="button" class="nav-tab active" data-page="inspect" aria-current="page">Inspection</button>
+        <button type="button" class="nav-tab" data-page="evaluate">Évaluation</button>
+      </nav>
+      <span class="local"><span></span> Moteur local</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="inspect">
+      <div class="intro">
+        <div><h1>Inspection de surface</h1>
+        <p>Comparez trois méthodes de détection de défauts sur une même image.</p></div>
+      </div>
+      <div class="workspace">
+        <aside class="panel controls" aria-label="Paramètres de l’inspection">
+          <section>
+            <h2>Image à contrôler</h2>
+            <input id="image-file" type="file" hidden accept=".png,.jpg,.jpeg,.webp,.bmp,.tif,.tiff">
+            <button type="button" id="upload" class="upload">
+              <span class="upload-icon" aria-hidden="true">↑</span>
+              <strong>Importer une image</strong>
+              <span>ou déposez-la ici · 16 Mo max.</span>
+            </button>
+            <div class="example-heading"><span>Exemples</span><span>MVTec AD · Cuir</span></div>
+            <div id="examples" class="example-grid" aria-label="Images de démonstration"></div>
+          </section>
+
+          <section>
+            <h2>Profil de référence</h2>
+            <div class="profile-line"><span class="profile-dot"></span><div>
+              <strong id="profile-title">Cuir · MVTec AD</strong>
+              <span id="profile-note">Chargement des images saines…</span>
+            </div></div>
+            <input id="reference-files" type="file" hidden multiple accept=".png,.jpg,.jpeg,.webp,.bmp,.tif,.tiff">
+            <button type="button" id="profile-action" class="outlined">Créer un profil</button>
+            <button type="button" id="restore" class="text-button" hidden>Revenir au profil cuir</button>
+          </section>
+
+          <section>
+            <h2>Paramètres</h2>
+            <label for="scenario">Conditions de prise de vue</label>
+            <select id="scenario"><option value="normal">Image originale</option></select>
+            <div class="range-label"><label for="threshold">Seuil relatif</label><output id="threshold-value">1,00×</output></div>
+            <input id="threshold" type="range" min="0.65" max="1.50" step="0.05" value="1" aria-describedby="threshold-help">
+            <div id="threshold-help" class="range-ends"><span>Plus sensible</span><span>Moins sensible</span></div>
+          </section>
+        </aside>
+
+        <div class="analysis">
+          <div class="board panel" id="board" aria-busy="true">
+            <div class="board-header">
+              <div>
+                <h2>Comparaison des méthodes</h2>
+                <p id="image-meta">Chargement de l’exemple…</p>
+              </div>
+              <div class="segmented" aria-label="Vue des prédictions">
+                <button type="button" class="selected" data-view="heat" aria-pressed="true">Carte</button>
+                <button type="button" data-view="boxes" aria-pressed="false">Contours</button>
+                <button type="button" data-view="mask" aria-pressed="false">Masque</button>
+              </div>
+            </div>
+            <div id="notice" class="notice" role="status" hidden></div>
+            <div id="results" class="results"></div>
+            <div class="board-footer">
+              <div id="legend" class="legend"><span>Score relatif</span><span>0</span><i aria-hidden="true"></i><span>2×+</span></div>
+              <span id="view-description">Les couleurs chaudes indiquent un écart plus marqué.</span>
+            </div>
+          </div>
+          <div class="method-note">
+            <div><span class="note-icon" aria-hidden="true">i</span><p>Chaque méthode signale un défaut quand son score atteint le seuil relatif. Les décisions sont affichées séparément.</p></div>
+            <button type="button" class="text-button" data-page="evaluate">Tester sur le lot d’évaluation <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="evaluate" hidden>
+      <div class="intro">
+        <div><h1>Évaluation de la robustesse</h1>
+        <p>Mesurez l’effet de l’éclairage, du flou et du bruit sur les mêmes pièces.</p></div>
+        <button type="button" id="run-benchmark" class="primary">Lancer l’évaluation</button>
+      </div>
+      <div class="benchmark-layout">
+        <section class="panel protocol">
+          <h2>Protocole d’essai</h2>
+          <dl>
+            <div><dt>Données</dt><dd>52 images cuir · MVTec AD</dd></div>
+            <div><dt>Lot de test</dt><dd>12 saines · 40 défectueuses</dd></div>
+            <div><dt>Éclairage réduit</dt><dd>Intensité RVB à 70 %</dd></div>
+            <div><dt>Flou optique</dt><dd>Filtre gaussien · σ 2 px</dd></div>
+            <div><dt>Bruit capteur</dt><dd>Bruit gaussien · σ 10 / 255</dd></div>
+            <div><dt>Seuil de décision</dt><dd id="benchmark-threshold">1,00×</dd></div>
+          </dl>
+          <p>Le profil cuir et les seuils calibrés sont conservés pour les quatre scénarios.</p>
+        </section>
+        <section class="panel benchmark-panel">
+          <div class="benchmark-heading">
+            <div><h2>Résultats par scénario</h2><p id="benchmark-state" role="status">Lancez l’évaluation pour mesurer les performances sur cette machine.</p></div>
+            <button type="button" id="download-csv" class="outlined" hidden>Exporter le CSV</button>
+          </div>
+          <div id="benchmark-results" hidden>
+            <div id="scenario-tabs" class="segmented" aria-label="Scénario affiché"></div>
+            <div class="table-scroll"><table>
+              <thead><tr><th scope="col">Méthode</th><th scope="col">AUROC image</th><th scope="col">AUROC pixel</th>
+              <th scope="col">IoU</th><th scope="col">Précision</th><th scope="col">Rappel</th>
+              <th scope="col">Fausses alertes</th><th scope="col">Médiane</th></tr></thead>
+              <tbody id="benchmark-body"></tbody>
+            </table></div>
+            <p class="table-note">IoU sur les 40 pièces défectueuses. Fausses alertes sur les 12 pièces saines. La médiane mesure le calcul par image hors lecture et affichage.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <footer class="site-footer"><span>Groupe 6 · Traitement d’images numériques</span><span>Données de démonstration © MVTec Software GmbH · CC BY-NC-SA 4.0</span></footer>
+  </main>
+
+  <dialog id="zoom" aria-labelledby="zoom-title">
+    <div class="dialog-header"><h2 id="zoom-title"></h2><form method="dialog"><button class="outlined">Fermer</button></form></div>
+    <img id="zoom-image" alt="">
+  </dialog>
+  <dialog id="profile-dialog" aria-labelledby="profile-dialog-title">
+    <div class="dialog-header"><h2 id="profile-dialog-title">Créer un profil de référence</h2></div>
+    <p>Choisissez 8 à 40 images saines et distinctes du même produit, prises avec un cadrage et un éclairage proches de ceux de l’inspection. Une partie des images sert à calibrer les seuils.</p>
+    <p>Le profil reste disponible jusqu’à l’arrêt de l’application.</p>
+    <div class="dialog-actions">
+      <form method="dialog"><button class="outlined">Annuler</button></form>
+      <button type="button" id="choose-references" class="primary">Choisir les photos</button>
+    </div>
+  </dialog>
+</body>
+</html>
