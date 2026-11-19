@@ -2,10 +2,13 @@
 
 import json
 
+import numpy as np
+
 from .media import read_rgb
-from .models import ROOT, fit, resize
+from .models import METHODS, ROOT, Profile
 
 DATA = ROOT / "data"
+DEMO_PROFILE = ROOT / "models" / "leather_profile.npz"
 
 LABELS = {
     "good": "Surface saine",
@@ -25,7 +28,8 @@ def read_sample(relative_path):
     return read_rgb((DATA / relative_path).read_bytes())
 
 
-def fit_demo(backbone, catalog):
-    keys = ("train", "calibration")
-    sets = [[resize(read_sample(path)[0]) for path in catalog[key]] for key in keys]
-    return fit(backbone, *sets)
+def load_demo_profile():
+    # Profil du rapport, pré-calculé pour démarrer sans les 245 photos saines.
+    with np.load(DEMO_PROFILE, allow_pickle=False) as weights:
+        thresholds = {key: float(weights[f"{key}_threshold"]) for key in METHODS}
+        return Profile(weights["mean"], weights["precision"], weights["bank"], thresholds)

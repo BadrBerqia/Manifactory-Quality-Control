@@ -4,6 +4,7 @@
 *.jpg binary
 *.png binary
 *.onnx binary
+*.npz binary
 *.pdf binary
 *.zip binary
 SurfaceLab/**/LICENSE-*.txt -whitespace

@@ -7,7 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
-from .dataset import DATA, fit_demo, read_catalog, read_sample
+from .dataset import DATA, load_demo_profile, read_catalog, read_sample
 from .media import truth_mask
 from .models import METHODS, SCENARIOS, WEIGHTS, Backbone, perturb, score_all
 
@@ -113,7 +113,7 @@ def main():
     backbone = Backbone()
     catalog = read_catalog()
     scenarios = SCENARIOS if args.scenario == "all" else [args.scenario]
-    rows = evaluate(backbone, fit_demo(backbone, catalog), catalog, scenarios, args.threshold)
+    rows = evaluate(backbone, load_demo_profile(), catalog, scenarios, args.threshold)
     if args.output:
         with args.output.open("w", newline="", encoding="utf-8-sig") as stream:
             writer = csv.DictWriter(stream, fieldnames=rows[0])

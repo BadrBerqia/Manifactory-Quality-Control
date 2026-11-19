@@ -31,7 +31,9 @@ Formats acceptés : PNG, JPEG, WebP, BMP et TIFF. Limite par image : 16 Mo et 24
 python -m inspection.benchmark --scenario all --threshold 1.0 --output evaluation.csv
 ```
 
-Le manifeste `data/manifest.json` fixe les 24 images d’apprentissage, 12 images de calibration et 52 images de test. L’apprentissage et la calibration utilisent uniquement les images saines de l’ensemble d’entraînement MVTec. Le protocole mesure l’AUROC image, l’AUROC pixel sur 4 096 classes de scores, l’IoU moyenne des pièces défectueuses, la précision, le rappel, le taux de fausses alertes et la latence médiane et P95. La latence comprend le redimensionnement et l’inférence CPU et exclut la lecture et le rendu. La taille indiquée dans le CSV correspond aux paramètres du profil par méthode et au fichier ONNX partagé.
+Le profil cuir par défaut est calculé à partir de **209 images saines d’apprentissage et de 36 autres images saines de calibration**. Les paramètres calculés sont fournis dans `models/leather_profile.npz`. Le manifeste `data/manifest.json` identifie les références d’origine et les 52 images de test incluses. Ce test intégré utilise le même profil que l’essai à 209 références du compte rendu, sur un sous-ensemble des 124 images du rapport.
+
+Le protocole mesure l’AUROC image, l’AUROC pixel sur 4 096 classes de scores, l’IoU moyenne des pièces défectueuses, la précision, le rappel, le taux de fausses alertes et la latence médiane et P95. La latence comprend le redimensionnement et l’inférence CPU et exclut la lecture et le rendu. La taille indiquée dans le CSV correspond aux paramètres du profil par méthode et au fichier ONNX partagé.
 
 Chaque méthode divise sa carte d’anomalie par son seuil calibré sur les surfaces saines. Un score proche de 1,00× indique que le maximum de la carte est proche du seuil par défaut. Le score exprime un écart à la référence. Les boîtes proviennent des composantes connexes du masque.
 

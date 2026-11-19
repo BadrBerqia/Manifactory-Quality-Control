@@ -12,7 +12,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from inspection.benchmark import evaluate
-from inspection.dataset import DATA, LABELS, fit_demo, read_catalog, read_sample
+from inspection.dataset import DATA, LABELS, load_demo_profile, read_catalog, read_sample
 from inspection.media import MAX_UPLOAD, data_url, read_rgb, render_method, render_truth, truth_mask
 from inspection.models import METHODS, ROOT, SCENARIOS, Backbone, fit, perturb, resize, score_all
 
@@ -27,7 +27,7 @@ async def lifespan(application):
     application.state.catalog = read_catalog()
     application.state.examples = {row["id"]: row for row in application.state.catalog["test"]}
     application.state.backbone = Backbone()
-    application.state.demo = fit_demo(application.state.backbone, application.state.catalog)
+    application.state.demo = load_demo_profile()
     yield
 
 
